@@ -1,0 +1,62 @@
+﻿<h3>Body Mass Index Calculator</h3>
+
+<div class="mb-3">
+    <label class="form-label">Centimeters</label>
+    <NumberInput TValue="int" @bind-Value="@CM" Placeholder="Enter Feet" />
+    <br />
+    <label class="form-label">Kilograms</label>
+    <NumberInput TValue="int" @bind-Value="@KG" Placeholder="Enter Weight in pounds" />
+    <br />
+    <label class="form-label">Age</label>
+    <NumberInput TValue="int" @bind-Value="@Age" Placeholder="Age" />
+</div>
+<Button Class="btn btn-success" @onclick="() => CalculateBMI(CM, KG, Age)">Calculate BMI</Button> 
+<Button Class="btn btn-success" @onclick="Swap">@gender.ToString()</Button> @BMI
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@code {
+    public int CM;
+    public int KG;
+    public int Age;
+    public decimal BMI;
+    public decimal GenderDiff;
+    public enum Gender {Man, Woman};
+    Gender gender;
+
+    private void CalculateBMI(int height, int weight, int age)
+    {
+        if(gender == Gender.Man)
+        {
+            GenderDiff = 5m;
+            BMI = (weight * 10m) + (height * 6.25m) - (age * 5m) + GenderDiff; 
+        } else
+        {
+            GenderDiff = -161m;
+            BMI = (weight * 10m) + (height * 6.25m) - (age * 5m) + GenderDiff;
+        }
+
+    }
+
+    private void Swap()
+    {
+        if(gender == Gender.Man)
+        {
+            gender = Gender.Woman;
+        } else if (gender == Gender.Woman)
+        {
+            gender = Gender.Man;
+        } else
+        {
+            gender = Gender.Man;
+        }
+
+        
+    }
+}
