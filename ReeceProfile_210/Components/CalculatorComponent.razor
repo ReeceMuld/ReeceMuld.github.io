@@ -1,0 +1,26 @@
+﻿<h3>CalculatorComponent</h3>
+<p>This component will help convert between inches and centimeters</p>
+
+<div class="mb-3">
+    <label class="form-label">Feet</label>
+    <NumberInput TValue="int" @bind-Value="@feet" Placeholder="Enter amount" />
+
+    <label class="form-label">Inches</label>
+    <NumberInput TValue="int" @bind-Value="@inches" Placeholder="Enter amount" />
+
+    <Button Class="btn btn-success" @onclick="() => ConvertInchestoCentimeters(inches, feet)">Calculate</Button>
+</div>
+<div class="mb-3">Height: @totalinches cm</div>
+
+@code {
+    public int inches;
+    public int feet;
+    public decimal totalinches;
+
+    private decimal ConvertInchestoCentimeters(int inches, int feet)
+    {
+        totalinches = (feet * 12) + inches;
+        return (totalinches * 2.54m);
+    }
+}
+
