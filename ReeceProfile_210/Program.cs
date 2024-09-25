@@ -7,5 +7,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+//This was added to give us access to the components we will work with
+builder.Services.AddBlazorBootstrap();
 
 await builder.Build().RunAsync();
